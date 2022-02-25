@@ -1,0 +1,44 @@
+w_metadata vcrun2019_ws dlls \
+    title="Visual C++ 2015-2019 libraries (concrt140.dll,mfc140.dll,mfc140u.dll,mfcm140.dll,mfcm140u.dll,msvcp140.dll,msvcp140_1,msvcp140_2,vcamp140.dll,vccorlib140.dll,vcomp140.dll,vcruntime140.dll) (and vcruntime140_1.dll on win64)" \
+    publisher="Microsoft" \
+    year="2019" \
+    media="download" \
+    conflicts="vcrun2015 vcrun2017" \
+    file1="vc_redist.x86.exe" \
+    installed_file1="${W_SYSTEM32_DLLS_WIN}/mfc140.dll"
+
+load_vcrun2019_ws()
+{
+    w_override_dlls native,builtin api-ms-win-crt-private-l1-1-0 api-ms-win-crt-conio-l1-1-0 api-ms-win-crt-heap-l1-1-0 api-ms-win-crt-locale-l1-1-0 api-ms-win-crt-math-l1-1-0 api-ms-win-crt-runtime-l1-1-0 api-ms-win-crt-stdio-l1-1-0 api-ms-win-crt-time-l1-1-0 atl140 concrt140 msvcp140 msvcp140_1 msvcp140_2 msvcr140 ucrtbase vcomp140 vcruntime140
+
+    # Microsoft download no longer containts ucrtbase so get the last known version from archive.org
+    w_download https://web.archive.org/web/20210415064013/https://download.visualstudio.microsoft.com/download/pr/85d47aa9-69ae-4162-8300-e6b7e4bf3cf3/14563755AC24A874241935EF2C22C5FCE973ACB001F99E524145113B2DC638C1/VC_redist.x86.exe 14563755ac24a874241935ef2c22c5fce973acb001f99e524145113b2dc638c1
+
+    if w_workaround_wine_bug 50894 "Working around failing wusa.exe lookup via C:\windows\SysNative"; then
+        w_set_winver winxp
+    fi
+
+    # Setup will refuse to install ucrtbase because builtin's version number is higher, so manually replace it
+    # See https://bugs.winehq.org/show_bug.cgi?id=46317
+    w_try_cabextract --directory="${W_TMP}/win32"  "${W_CACHE}"/${W_PACKAGE}/vc_redist.x86.exe -F 'a10'
+    w_try_cabextract --directory="${W_SYSTEM32_DLLS}" "${W_TMP}/win32/a10" -F 'ucrtbase.dll'
+
+    w_try_cd "${W_CACHE}"/"${W_PACKAGE}"
+    w_try "${WINE}" vc_redist.x86.exe ${W_OPT_UNATTENDED:+/q}
+
+    case "${W_ARCH}" in
+        win64)
+            # vcruntime140_1 is only shipped on x64:
+            w_override_dlls native,builtin vcruntime140_1
+
+            # Microsoft download no longer containts ucrtbase so get the last known version from archive.org
+            w_download https://web.archive.org/web/20210414165612/https://download.visualstudio.microsoft.com/download/pr/85d47aa9-69ae-4162-8300-e6b7e4bf3cf3/52B196BBE9016488C735E7B41805B651261FFA5D7AA86EB6A1D0095BE83687B2/VC_redist.x64.exe 52b196bbe9016488c735e7b41805b651261ffa5d7aa86eb6a1d0095be83687b2
+            # Also replace 64-bit ucrtbase.dll
+            w_try_cabextract --directory="${W_TMP}/win64"  "${W_CACHE}"/${W_PACKAGE}/vc_redist.x64.exe -F 'a10'
+            w_try_cabextract --directory="${W_SYSTEM64_DLLS}" "${W_TMP}/win64/a10" -F 'ucrtbase.dll'
+            w_try "${WINE}" vc_redist.x64.exe ${W_OPT_UNATTENDED:+/q}
+            ;;
+    esac
+
+    w_set_winver 'default'
+}

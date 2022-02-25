@@ -1,0 +1,19 @@
+w_metadata dsetup_ws dlls \
+    title="MS dsetup.dll" \
+    publisher="Microsoft" \
+    year="2010" \
+    media="download" \
+    file1="../directx9/directx_Jun2010_redist.exe" \
+    installed_file1="${W_SYSTEM32_DLLS_WIN}/dsetup.dll"
+
+load_dsetup_ws()
+{
+    dllname=dsetup
+
+    helper_directx_Jun2010
+
+    w_try_cabextract -d "${W_TMP}" -L -F dsetup.dll "${W_CACHE}"/directx9/${DIRECTX_NAME}
+    w_try cp "${W_TMP}/${dllname}.dll" "${W_SYSTEM32_DLLS}/${dllname}.dll"
+
+    w_override_dlls native ${dllname}
+}

@@ -1,0 +1,13 @@
+warning: taskset/cpuset not available on your platform!
+Executing mkdir -p /Users/nathandaven/Applications/Wineskin/Usenti Sprite Editor.app/Contents
+------------------------------------------------------
+warning: You are using a 64-bit WINEPREFIX. Note that many verbs only install 32-bit versions of packages. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug.
+------------------------------------------------------
+Using winetricks 20210206-next - sha256sum: 7ec9c3e9140e592ef575140417f27e75e16ccebfeee9816cdbab21aa3d5c0841 with wine-21.1.0-21-g86686222 and WINEARCH=win64
+Executing w_do_call mfc42
+Executing mkdir -p /Users/nathandaven/Applications/Wineskin/Usenti Sprite Editor.app/Contents
+------------------------------------------------------
+warning: You are using a 64-bit WINEPREFIX. Note that many verbs only install 32-bit versions of packages. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug.
+------------------------------------------------------
+Executing load_mfc42 
+Executing cabextract -q /Users/nathandaven/.cache/winetricks/vcrun6/vcredist.exe -d /Users/nathandaven/Applications/Wineskin/Usenti Sprite Editor.app/Contents/Resources/dosdevices/c:/windows/syswow64 -F mfc42*.dll

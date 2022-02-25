@@ -1,0 +1,39 @@
+w_metadata origin_ws apps \
+    title="EA Origin" \
+    publisher="EA" \
+    media="download" \
+    file1="OriginSetup.exe" \
+    installed_file1="${W_PROGRAMS_X86_WIN}/Origin/Origin.exe" \
+    homepage="https://www.origin.com/"
+
+load_origin_ws()
+{
+    if [ -f "${W_CACHE}/${W_PACKAGE}/${file1}" ]; then
+        rm ${W_CACHE}/${W_PACKAGE}/${file1}
+    fi
+
+    w_download https://origin-a.akamaihd.net/Origin-Client-Download/origin/live/OriginSetup.exe
+
+    if w_workaround_wine_bug 44691 "Installer fails under wine, manually unpacking it instead" 6.7,; then
+        w_try_7z "${W_TMP}/${W_PACKAGE}" "${W_CACHE}"/"${W_PACKAGE}"/${file1} update
+        w_try_7z "${W_PROGRAMS_X86_UNIX}"/Origin "${W_TMP}/${W_PACKAGE}"/update/OriginUpdate_*_*_*_*.zip -aoa
+    else
+        w_try_cd "${W_CACHE}/${W_PACKAGE}"
+        w_try "${WINE}" ${file1} /NoLaunch ${W_OPT_UNATTENDED:+/SILENT}
+    fi
+
+    if w_workaround_wine_bug 32342 "QtWebEngineProcess.exe crashes when updating or launching Origin (missing fonts)"; then
+        w_call corefonts
+    fi
+
+    if w_workaround_wine_bug 44985 "Disabling libglesv2 to make Store and Library function correctly."; then
+        w_override_dlls disabled libglesv2
+    fi
+
+    # Needed by QtWebEngineProcess.exe
+    w_call d3dcompiler_47
+
+    # Avoids "An unexpected error has occurred. Please try again in a few moments. Error: 327684:3"
+    # Also gets games to registor correctly
+    w_override_dlls disabled gameux
+}
