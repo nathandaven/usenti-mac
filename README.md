@@ -1,15 +1,15 @@
 # Usenti for Mac
-Usenti, a sprite editor and C source code exporter for the Gameboy Advance, wrapped using WineSkin for macOS (32/64/arm). Made for CS 2261 at Georgia Tech!
+Usenti, a sprite editor and C source code exporter for the Gameboy Advance, wrapped using WineSkin for macOS (32/64/arm). Made for CS 2261 at Georgia Tech!  
 
-# Installation
+## Installation
 
 Here is my attempt to distribute a wine wrapped Usenti for Mac using Wineskin!
 
 Go ahead and run "InstallUsenti.command" to get going.
-**NOTE:** right click, and click open, rather than double clicking. Otherwise, macOS will nto let you run the script
+**NOTE:** right click, and click open, rather than double clicking. Otherwise, macOS will not let you run the script  
 
 
-# Backup Method
+## Backup Method
 
 If this doesn't work for you, try these steps to do it manually:
 
@@ -27,16 +27,16 @@ If this doesn't work for you, try these steps to do it manually:
 
 5. Ignore if the command has any errors in the terminal! Then click right click on the app and click open.
 
-6. Proft!
+6. Proft!  
 
 
 
 (Note)
 
-If you decide to change the location of the application, update that in your file path for the xattr command :)
+If you decide to change the location of the application, update that in your file path for the xattr command :)  
 
 (Note 2)
-This will not work on earlier versions of Catalina (10.15.0-10.15.3, I believe), due to bugs with Wine 32on64.
+This will not work on earlier versions of Catalina (10.15.0-10.15.3, I believe), due to bugs with Wine 32on64.  
 
 
 # Credits
