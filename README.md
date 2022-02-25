@@ -39,5 +39,5 @@ If this doesn't work for you, try these steps to do it manually:
 ## Credits
 - Coranac for developing this softawre, Usenti can be found here: https://www.coranac.com/projects/usenti/
 - The developers of Wineskin and Wine for making this easy to package https://github.com/Gcenx/WineskinServer
-- Professor Aaron for being a great professor to TA for!
+- Professor Hensen for being a great professor to TA for!
 - And lastly, Georgia Tech for offering CS 2261 as course :)
