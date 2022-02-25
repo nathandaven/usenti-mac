@@ -30,13 +30,11 @@ If this doesn't work for you, try these steps to do it manually:
 6. Proft!  
 
 
+## Notes
 
-(Note)
+- If you decide to change the location of the application, update that in your file path for the xattr command :)  
 
-If you decide to change the location of the application, update that in your file path for the xattr command :)  
-
-(Note 2)
-This will not work on earlier versions of Catalina (10.15.0-10.15.3, I believe), due to bugs with Wine 32on64.  
+- This will not work on earlier versions of Catalina (10.15.0 - 10.15.3, I believe), due to bugs with Wine 32on64.  
 
 
 # Credits
