@@ -37,7 +37,7 @@ If this doesn't work for you, try these steps to do it manually:
 - This will not work on earlier versions of Catalina (10.15.0 - 10.15.3, I believe), due to bugs with Wine 32on64.  
 
 
-# Credits
+## Credits
 - Coranac for developing this softawre, Usenti can be found here: https://www.coranac.com/projects/usenti/
 - The developers of Wineskin and Wine for making this easy to package https://github.com/Gcenx/WineskinServer
 - Professor Aaron for being a great professor to TA for!
