@@ -1,16 +1,16 @@
-  name: Create Release
+
+name: Create Release
   on:
   push:
     tags:
       - '*'
 
-  jobs:
-	  build:
-	    runs-on: ubuntu-latest
-	    
-	    steps:
-	
-	  - name: release
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+	- name: release
 	    uses: actions/create-release@v1
 	    id: create_release
 	    with:
