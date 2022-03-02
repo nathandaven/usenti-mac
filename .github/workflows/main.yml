@@ -27,9 +27,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
-      
-	
-	  - name: release
+        
+	- name: release
 	    uses: actions/create-release@v1
 	    id: create_release
 	    with:
