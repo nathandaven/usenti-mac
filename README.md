@@ -5,7 +5,7 @@ Usenti, a sprite editor and C source code exporter for the Gameboy Advance, wrap
 ![Usenti for Mac screenshot](image.png)
 
 
-## Installation
+## Installation  
 
 Here is my attempt to distribute a wine wrapped Usenti for Mac using Wineskin!
 
