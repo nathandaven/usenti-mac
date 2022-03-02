@@ -21,6 +21,7 @@ jobs:
       run: |
         cd release
         ls -la
+        
     - name: Bump version and push tag
       uses: anothrNick/github-tag-action@1.36.0
       env:
