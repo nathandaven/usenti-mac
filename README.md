@@ -39,6 +39,9 @@ If this doesn't work for you, try these steps to do it manually:
 - This will not work on earlier versions of Catalina (`10.15.0` - `10.15.3`, I believe), due to bugs with `Wine 32on64`.  
 - Linux tips: Usneti can be run easily on linux as well. Install wine and winetricks, and then run `winetricks mfc42`. You should then beable to just open usenti.exe directly using wine. Usenti can be downloaded from https://www.coranac.com/projects/usenti/ .
 
+## Todo
+- Create a brew formula for easy installation
+- Someone please create a modern version of usenti >.<
 
 ## Credits
 - Coranac for developing this softawre, Usenti can be found here: https://www.coranac.com/projects/usenti/
